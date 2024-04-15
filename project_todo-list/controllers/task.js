@@ -1,4 +1,4 @@
-const Task = require("../modules/task");
+const Task = require("../modals/task");
 const asyncWrapper = require("../middleware/async");
 const  {createCustomError}  = require("../error/error-custom");
 
