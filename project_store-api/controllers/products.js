@@ -48,11 +48,11 @@ const getAllProducts = async (req, res) => {
     const fieldsList = fields.split(",").join(" ");
     result = result.select(fieldsList);
   }
+
   //   if (limit) {
   //     const limitNumber = parseInt(limit)
   //     result = result.limit(limitNumber)
   //   }
-
   const pageNumber = Number(page) || 1;
   const limitPage = Number(limit) || 10;
   const skip = (pageNumber - 1) * 10;
