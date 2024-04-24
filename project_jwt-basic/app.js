@@ -11,7 +11,7 @@ const errorHandler = require("./middleware/error-handler");
 app.use(express.json());
 
 //Connect DB
-const connetDB = require("./db/connect");
+const connectDB = require("./db/connect");
 
 //Routes
 const mainRouter = require("./routes/main");
@@ -24,7 +24,7 @@ const port = process.env.PORT || 3000;
 
 const start = async () => {
   try {
-    // await connetDB(process.env.MONGO_URI);
+    // await connectDB(process.env.MONGO_URI);
     app.listen(port, console.log(`Listening on port ${port}...`));
   } catch (error) {
     console.log(error);
