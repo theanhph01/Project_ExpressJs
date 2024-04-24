@@ -17,8 +17,8 @@ const connetDB = require("./db/connect");
 const mainRouter = require("./routes/main");
 app.use(express.static("./public"));
 app.use("/api/v1", mainRouter);
-app.use(notFoundPage)
-app.use(errorHandler)
+app.use(notFoundPage);
+app.use(errorHandler);
 
 const port = process.env.PORT || 3000;
 

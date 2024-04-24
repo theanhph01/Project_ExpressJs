@@ -1,9 +1,35 @@
+//check username, password in post(login) request
+//if exist create new JWT
+//send back to front-end
 
+//setup authentication so only the request with JWT can accsess the dashcboard
+const jwt = require("jsonwebtoken");
 
-const getHomePage = (req, res) =>{
-    res.status(200).send("Home Page")
-}
+const CustomAPIError = require("../errors/custom-erros");
+
+const login = async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    throw new CustomAPIError("Please provide email and password", 400);
+  }
+  //fake ID
+  const id = new Date().getDate();
+  const token = jwt.sign({ id, username }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
+  res.status(200).json({ msg: "user created", token });
+};
+
+const dashboard = async (req, res) => {
+  const { id, username } = req.user;
+  const luckyNumber = Math.floor(Math.random() * 100);
+  res.status(200).json({
+    msg: `Hello, ${username}`,
+    secret: `Here is your authorized data, your lucky number is ${luckyNumber}`,
+  });
+};
 
 module.exports = {
-    getHomePage
-}
+  login,
+  dashboard,
+};
