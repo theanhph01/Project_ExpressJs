@@ -1,11 +1,17 @@
-const bcrypt = require("bcryptjs");
+const decimalStr = (str) => {
+  const newStr = str.split(" ");
+  // Tạo một chuỗi mới với ký tự đầu tiên thay đổi thành "a"
 
-const start = async () => {
-  const a = "theanhh01";
-  const salt = await bcrypt.genSalt(10);
-  const password = await bcrypt.hash(a, salt);
-  const b = "theanhh01";
-  const isPassword = await bcrypt.compare(password, b);
-  console.log(isPassword);
+  for (let i = 0; i < newStr.length; i++) {
+    for (let j = 0; j < newStr[i].length; j++) {
+      newStr[i] = newStr[i][j].charCodeAt() + newStr[i].slice(j+1);
+    }
+    
+
+   
+  }
+  console.log(newStr[0].slice(1));
+  return newStr.join(" ");
 };
-start();
+
+console.log(decimalStr("the anh"));
